@@ -25,7 +25,6 @@ module.exports = {
         new HtmlWebpackPlugin({
       title: 'Hot Module Replacement'
      }),
-     new webpack.NamedModulesPlugin(),
      new webpack.HotModuleReplacementPlugin()
     ],
     output: {
