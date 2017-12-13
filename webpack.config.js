@@ -1,36 +1,20 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin'); 
-const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    entry: {
-        app: './src/index.js',
-    },
-    devtool: 'inline-source-map',
-    devServer: {
-        contentBase: './dist',
-        hot: true
-    },
-    module: {
-     rules: [
-       {
-         test: /\.css$/,
-         use: ['style-loader', 'css-loader']
-       }
-     ]
-   },
-    plugins: [
-        new CleanWebpackPlugin(['dist']), 
-        new HtmlWebpackPlugin({
-      title: 'Hot Module Replacement'
-     }),
-     new webpack.HotModuleReplacementPlugin(),
-     new UglifyJSPlugin()
-    ],
-    output: {
-        filename: "[name].bundle.js",
-        path: path.resolve(__dirname, 'dist')
-    }
-}
+  entry: {
+    index: './src/index.js',
+  },
+  plugins: [
+    new CleanWebpackPlugin(['dist']),
+    new HTMLWebpackPlugin({
+      title: 'Code Splitting'
+    })
+  ],
+  output: {
+    filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  }
+};
