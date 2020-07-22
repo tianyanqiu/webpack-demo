@@ -6,9 +6,6 @@ const webpack = require('webpack');
 module.exports = {
   entry: {
     main: './src/index.js',
-    vendor: [
-      'lodash'
-    ]
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -19,17 +16,17 @@ module.exports = {
     
   ],
   optimization: {
+    runtimeChunk: 'single',
     splitChunks: {
-        cacheGroups: {
-            commons: {
-                name: "vendor",
-                chunks: "initial",
-                minChunks: 2
-            }
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name:'vendors',
+          chunks:'all'
         }
+      }
     }
-},
-
+  },
   output: {
     filename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist')
