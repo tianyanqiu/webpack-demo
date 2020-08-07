@@ -165,6 +165,16 @@ module: {
 
 > webpack 根据正则表达式，来确定应该查找哪些文件，并将其提供给指定的 loader。在这种情况下，以 .css 结尾的全部文件，都将被提供给 style-loader 和 css-loader。
 
+### 加载图片
+
+我们可以使用`file-loader`，我们可以轻松的将这些内容混合到 css 中：
+
+```shell
+yarn add file-loader
+```
+
+`file-loader`不仅支持加载图片，还支持加载字体和文件。
+
 ## loader
 
 `loader`特性:
