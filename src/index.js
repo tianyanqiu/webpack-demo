@@ -1,14 +1,14 @@
- import _ from 'lodash';
+import _ from "lodash";
+import "./styles.css";
 //  import Print from './print';
 
- function component() {
-   var element = document.createElement('div');
+function component() {
+  var element = document.createElement("div");
 
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    // element.onclick = Print.bind(null,'Hello webpack!')
+  element.innerHTML = _.join(["Hello", "webpack"], " ");
+  // element.onclick = Print.bind(null,'Hello webpack!')
 
-    return element;
-  }
+  return element;
+}
 
-
- document.body.appendChild(component());
+document.body.appendChild(component());

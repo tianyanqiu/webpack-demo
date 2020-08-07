@@ -1,34 +1,36 @@
-const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const webpack = require('webpack');
+const path = require("path");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
   entry: {
-    main: './src/index.js',
+    main: "./src/index.js",
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HTMLWebpackPlugin({
-      title: 'Caching'
+      title: "Caching",
     }),
     new webpack.HashedModuleIdsPlugin(),
-    
   ],
   optimization: {
-    runtimeChunk: 'single',
+    runtimeChunk: "single",
     splitChunks: {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name:'vendors',
-          chunks:'all'
-        }
-      }
-    }
+          name: "vendors",
+          chunks: "all",
+        },
+      },
+    },
   },
   output: {
-    filename: '[name].[chunkhash].js',
-    path: path.resolve(__dirname, 'dist')
-  }
+    filename: "[name].[chunkhash].js",
+    path: path.resolve(__dirname, "dist"),
+  },
+  module: {
+    rules: [{ test: /\.css$/, use: ["style-loader", "css-loader"] }],
+  },
 };

@@ -64,3 +64,4 @@ fastlane/screenshots
 docs/_book
 _book
 *.log
+dist
