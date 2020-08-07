@@ -232,6 +232,83 @@ const path = require('path');
   };
 ```
 
+## 开发
+
+### 使用 webpack-dev-server
+
+`webpack-dev-server`为我们提供了一个简单的 web 服务器，并且能够实时重新加载。
+
+```shell
+yarn add webpack-dev-server
+```
+
+修改配置文件，告诉开发服务器(dev server),在哪里查找文件：
+
+`webpack.config.js`
+
+```javascript
+const path = require('path');
+  const HtmlWebpackPlugin = require('html-webpack-plugin');
+  const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+  module.exports = {
+    entry: {
+      app: './src/index.js',
+      print: './src/print.js'
+    },
+    devtool: 'inline-source-map',
++   devServer: {
++     contentBase: './dist'
++   },
+    plugins: [
+      new CleanWebpackPlugin(['dist']),
+      new HtmlWebpackPlugin({
+        title: 'Development'
+      })
+    ],
+    output: {
+      filename: '[name].bundle.js',
+      path: path.resolve(__dirname, 'dist')
+    }
+  };
+```
+
+以上配置告知 webpack-dev-server，在 localhost:8080 下建立服务，将 dist 目录下的文件，作为可访问文件。
+
+让我们添加一个 script 脚本，可以直接运行开发服务器(dev server)：
+
+`package.json`
+
+```json
+ {
+    "name": "development",
+    "version": "1.0.0",
+    "description": "",
+    "main": "webpack.config.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "watch": "webpack --watch",
++     "start": "webpack-dev-server --open",
+      "build": "webpack"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "clean-webpack-plugin": "^0.1.16",
+      "css-loader": "^0.28.4",
+      "csv-loader": "^2.1.1",
+      "file-loader": "^0.11.2",
+      "html-webpack-plugin": "^2.29.0",
+      "style-loader": "^0.18.2",
+      "webpack": "^3.0.0",
+      "xml-loader": "^1.2.1"
+    }
+  }
+```
+
+现在我们可以在命令行中运行`yarn start`就会看到浏览器自动加载页面。如果现在修改和保存任意源文件，web 服务器就会自动重新加载编译后的代码。
+
 ## loader
 
 `loader`特性:

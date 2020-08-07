@@ -30,6 +30,7 @@ module.exports = {
     filename: "[name].[chunkhash].js",
     path: path.resolve(__dirname, "dist"),
   },
+  devtool: "inline-source-map",
   // module: {
   //   rules: [
   //     { test: /\.css$/, use: ["style-loader", "css-loader"] },
