@@ -1,6 +1,7 @@
 import _ from "lodash";
 import "./styles.css";
 import Icon from "./icon.jpg";
+import Data from "./data.xml";
 //  import Print from './print';
 
 function component() {
@@ -12,6 +13,8 @@ function component() {
   element.classList.add("hello");
   element.appendChild(myIcon);
   // element.onclick = Print.bind(null,'Hello webpack!')
+
+  console.log(Data);
 
   return element;
 }

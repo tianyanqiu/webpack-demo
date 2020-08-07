@@ -175,6 +175,63 @@ yarn add file-loader
 
 `file-loader`不仅支持加载图片，还支持加载字体和文件。
 
+### 加载数据
+
+可以加载的有用资源还包括数据，如 JSON 文件，CSV、TSV、和 XML。类似于 NodeJS,JSON 支持实际上是内置的。要导入 JSON 文件，CSV、TSV、和 XML，可以使用`csv-loader`和`xml-loader`。
+
+```shell
+yarn add csv-loader xml-loader
+```
+
+`webpack.config.js`
+
+```javascript
+const path = require('path');
+
+  module.exports = {
+    entry: './src/index.js',
+    output: {
+      filename: 'bundle.js',
+      path: path.resolve(__dirname, 'dist')
+    },
+    module: {
+      rules: [
+        {
+          test: /\.css$/,
+          use: [
+            'style-loader',
+            'css-loader'
+          ]
+        },
+        {
+          test: /\.(png|svg|jpg|gif)$/,
+          use: [
+            'file-loader'
+          ]
+        },
+        {
+          test: /\.(woff|woff2|eot|ttf|otf)$/,
+          use: [
+            'file-loader'
+          ]
+        },
++       {
++         test: /\.(csv|tsv)$/,
++         use: [
++           'csv-loader'
++         ]
++       },
++       {
++         test: /\.xml$/,
++         use: [
++           'xml-loader'
++         ]
++       }
+      ]
+    }
+  };
+```
+
 ## loader
 
 `loader`特性:
