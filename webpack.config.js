@@ -10,9 +10,10 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HTMLWebpackPlugin({
-      title: "Caching",
+      title: "Hot Module Replacement",
     }),
-    new webpack.HashedModuleIdsPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   optimization: {
     runtimeChunk: "single",
@@ -27,7 +28,7 @@ module.exports = {
     },
   },
   output: {
-    filename: "[name].[chunkhash].js",
+    filename: "[name].boundle.js",
     path: path.resolve(__dirname, "dist"),
   },
   devtool: "inline-source-map",
