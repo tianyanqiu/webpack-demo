@@ -1,22 +1,21 @@
-import { cube } from "./math.js";
-
 function component() {
-  var element = document.createElement("pre");
+  function getComponent() {
+    var element = document.createElement("div");
+    // Lodash, now imported by this script
+    element.innerHTML = _.join(["Hello", "webpack"], " ");
+    return import(/* webpackChunkName: "lodash" */ "lodash")
+      .then((_) => {
+        var element = document.createElement("div");
 
-  element.innerHTML = ["Hello webpack!", "5 cubed is equal to " + cube(5)].join(
-    "\n\n"
-  );
+        element.innerHTML = _.join(["Hello", "webpack"], " ");
 
-  return element;
+        return element;
+      })
+      .catch((error) => "An error occurred while loading the component");
+  }
+
+  document.body.appendChild(component());
+  getComponent().then((component) => {
+    document.body.appendChild(component);
+  });
 }
-
-document.body.appendChild(component());
-
-// if (module.hot) {
-//   module.hot.accept("./print.js", function () {
-//     console.log("Accepting the updated printMe module!");
-//     document.body.removeChild(element);
-//     element = component(); // Re-render the "component" to update the click handler
-//     document.body.appendChild(element);
-//   });
-// }

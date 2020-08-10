@@ -4,12 +4,17 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const webpack = require("webpack");
 
 module.exports = {
-  mode: "production",
   entry: {
-    main: "./src/index.js",
+    index: "./src/index.js",
   },
+  plugins: [
+    new HTMLWebpackPlugin({
+      title: "Code Splitting",
+    }),
+  ],
   output: {
-    filename: "[name].boundle.js",
+    filename: "[name].bundle.js",
+    chunkFilename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
   // plugins: [
