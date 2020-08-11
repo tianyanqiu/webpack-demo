@@ -10,11 +10,11 @@ function component() {
   element.appendChild(br);
   element.appendChild(button);
 
-  button.onclick = (e) =>
-    import(/* webpackChunkName: "print" */ "./print").then((module) => {
-      var print = module.default;
-      print();
-    });
+  // button.onclick = (e) =>
+  //   import(/* webpackChunkName: "print" */ "./print").then((module) => {
+  //     var print = module.default;
+  //     print();
+  //   });
 
   return element;
 }

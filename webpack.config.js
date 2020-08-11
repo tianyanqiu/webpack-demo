@@ -9,22 +9,21 @@ module.exports = {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      title: "Code Splitting",
+      title: "Caching",
     }),
   ],
   output: {
-    filename: "[name].bundle.js",
-    chunkFilename: "[name].bundle.js",
+    filename: "[name].[chunkhash].js",
     path: path.resolve(__dirname, "dist"),
   },
-  // plugins: [
-  //   new CleanWebpackPlugin(),
-  //   new HTMLWebpackPlugin({
-  //     title: "Hot Module Replacement",
-  //   }),
-  //   new webpack.NamedModulesPlugin(),
-  //   new webpack.HotModuleReplacementPlugin(),
-  // ],
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HTMLWebpackPlugin({
+      title: "Hot Module Replacement",
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+  ],
   // optimization: {
   //   runtimeChunk: "single",
   //   splitChunks: {
