@@ -1,21 +1,22 @@
+import _ from "lodash";
+
 function component() {
-  function getComponent() {
-    var element = document.createElement("div");
-    // Lodash, now imported by this script
-    element.innerHTML = _.join(["Hello", "webpack"], " ");
-    return import(/* webpackChunkName: "lodash" */ "lodash")
-      .then((_) => {
-        var element = document.createElement("div");
+  var element = document.createElement("div");
+  var button = document.createElement("button");
+  var br = document.createElement("br");
 
-        element.innerHTML = _.join(["Hello", "webpack"], " ");
+  button.innerHTML = "Click me and look at the console!";
+  element.innerHTML = _.join(["Hello", "webpack"], " ");
+  element.appendChild(br);
+  element.appendChild(button);
 
-        return element;
-      })
-      .catch((error) => "An error occurred while loading the component");
-  }
+  button.onclick = (e) =>
+    import(/* webpackChunkName: "print" */ "./print").then((module) => {
+      var print = module.default;
+      print();
+    });
 
-  document.body.appendChild(component());
-  getComponent().then((component) => {
-    document.body.appendChild(component);
-  });
+  return element;
 }
+
+document.body.appendChild(component());
