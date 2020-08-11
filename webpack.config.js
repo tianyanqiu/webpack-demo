@@ -13,16 +13,19 @@ module.exports = {
     }),
   ],
   output: {
-    filename: "[name].[chunkhash].js",
+    filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new HTMLWebpackPlugin({
-      title: "Hot Module Replacement",
+    // new CleanWebpackPlugin(),
+    // new HTMLWebpackPlugin({
+    //   title: "Hot Module Replacement",
+    // }),
+    // new webpack.NamedModulesPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
+    new webpack.ProvidePlugin({
+      join: ["lodash", "join"],
     }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
   ],
   // optimization: {
   //   runtimeChunk: "single",
